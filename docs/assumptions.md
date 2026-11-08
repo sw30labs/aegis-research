@@ -1,0 +1,15 @@
+# Assumptions register
+
+aegis-research, retrospective ADR pass 2026-11-08 (default branch `c5a0cec`).
+
+| ID | Assumption | Why it was needed | Evidence / source | How to verify | Confidence | Status |
+|---|---|---|---|---|---|---|
+| A-001 | The single publish commit contains the decisions as a finished text edition; there is no earlier design history in this repo to sequence them. | Retrospective ADRs should not invent an evolution that git does not show. | `git log` (one commit, `c5a0cec`) | Ask Nic whether earlier private drafts existed and whether any decision predated the others. | high | open |
+| A-002 | Where an ADR restates a "why" already written in README/RESEARCH/ARCHITECTURE, that prose is the author's rationale, not a later invention. | Distinguishes quoted rationale from steward inference. | `README.md`; `RESEARCH.md`; `docs/ARCHITECTURE.md` | Nic confirms the published wording still stands. | high | open |
+| A-003 | "AEGIS" remaining a working name means trademark clearance and product naming are still undecided, not that a different public name is already chosen. | ADR-0012 records the NOTICE.md statement. | `NOTICE.md` | Ask Nic if a replacement name is in progress. | medium | open |
+| A-004 | The four sibling repos named in the README are still the intended research connections, and none has been integrated since this snapshot. | ADR-0015 depends on the "not an integration" claim remaining true. | `README.md`; those repos were not cloned for this pass | Check each named repo for an AEGIS integration and ask Nic. | medium | open |
+| A-005 | The 2026-09-06 source review in `docs/SOURCES.md` has not been superseded by later private notes. | ADR-0013 treats that table as current. | `docs/SOURCES.md` ("Reviewed 2026-09-06"); no later commits | Re-review the four citations and dates. | medium | open |
+| A-006 | Numeric acceptance thresholds were deliberately left unset until a concrete workload exists, not omitted by accident. | ADR-0010/0011 rely on that timing. | `experiments/REGISTER.md`; `experiments/AEGIS-E001.md` (Gate) | Confirm with Nic when E001's harness is scoped. | high | open |
+| A-007 | No GitHub Pages site, CI workflow, package manifest, or deploy allowlist consumes this tree, so adding `docs/adr/` and `docs/assumptions.md` cannot break a build or publish path. | Required before considering auto-merge. | GitHub API Pages 404; no `.github/`; no `pyproject.toml`/`package.json` | Recheck Pages settings and any new workflow. | high | open |
+| A-008 | Feedback described in CONTRIBUTING.md is the intended collaboration path until a contribution license exists. | Context for ADR-0012. | `CONTRIBUTING.md`; `NOTICE.md` | Nic confirms whether a license should be added. | high | open |
+| A-009 | Case-insensitive scans for "UBS" hit only the substrings in "subsequent" and "substitute"; those lines are not UBS-internal material. | Hard-limit skip rule; a false positive should not block the pass. | `RESEARCH.md`; `docs/THREAT-MODEL.md` (word-boundary scan was clean) | Re-run a word-bounded search. | high | open |
